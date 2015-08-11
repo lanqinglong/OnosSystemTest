@@ -393,10 +393,10 @@ class FUNCvirNetNB:
         Getstatus, result = main.ONOSrest.send( ctrlip, port, network.id, path+'networks/',
                                                 'GET', None, None )
         utilities.assert_equals(
-                expect='',
+                expect='The temantNetwork does not exists',
                 actual=result,
                 onpass="Get Success",
                 onfail="Get Failed " + str( Getstatus ) + str( result ) )
 
-        if result!='':
+        if result != 'The temantNetwork does not exists':
             main.log.error( "Delete Network failed" )

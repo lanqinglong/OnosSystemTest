@@ -27,21 +27,21 @@ class NetworkData:
         if self.id !='':
             Dicdata['id'] = self.id
         if self.state != '':
-            Dicdata['state'] = self.state
+            Dicdata['status'] = self.state
         if self.name !='':
             Dicdata['name'] = self.name
         if self.physicalNetwork !='':
-            Dicdata['physicalNetwork'] = self.physicalNetwork
+            Dicdata['provider:physical_network'] = self.physicalNetwork
         if self.admin_state_up !='':
             Dicdata['admin_state_up'] = self.admin_state_up
         if self.tenant_id !='':
             Dicdata['tenant_id'] = self.tenant_id
         if self.routerExternal !='':
-            Dicdata['routerExternal'] = self.routerExternal
+            Dicdata['router:external'] = self.routerExternal
         if self.type !='':
-            Dicdata['type'] = self.type
+            Dicdata['provider:network_type'] = self.type
         if self.segmentationID !='':
-            Dicdata['segmentationID'] = self.segmentationID
+            Dicdata['provider:segmentation_id'] = self.segmentationID
         if self.shared !='':
             Dicdata['shared'] = self.shared
 
@@ -60,8 +60,13 @@ class NetworkData:
 
     def JsonCompare(self,SourceData,DestiData,FirstPara,SecondPara):
 
-        SourceCompareDataDic = json.loads(SourceData)
-        DestiCompareDataDic = json.loads(DestiData)
+        try:
+            SourceCompareDataDic = json.loads(SourceData)
+            DestiCompareDataDic = json.loads(DestiData)
+        except ValueError:
+            print "SourceData or DestData is not JSON Type!"
+            return False
+
         Socom = SourceCompareDataDic[FirstPara][SecondPara]
         Decom = DestiCompareDataDic[FirstPara][SecondPara]
         if Socom == Decom:
