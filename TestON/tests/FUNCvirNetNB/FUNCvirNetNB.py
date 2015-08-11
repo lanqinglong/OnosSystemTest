@@ -300,7 +300,7 @@ class FUNCvirNetNB:
 
         main.step( "Update Data via HTTP" )
         Updatestatus, result = main.ONOSrest.send( ctrlip, port, network.id, path+'networks/',
-                                                   'PUT', None, ostdatanew)
+                                                   'PUT', None, postdatanew)
         utilities.assert_equals(
                 expect='200',
                 actual=Updatestatus,
@@ -393,10 +393,10 @@ class FUNCvirNetNB:
         Getstatus, result = main.ONOSrest.send( ctrlip, port, network.id, path+'networks/',
                                                 'GET', None, None )
         utilities.assert_equals(
-                expect='The temantNetwork does not exists',
+                expect='The tenantNetwork does not exists',
                 actual=result,
                 onpass="Get Success",
                 onfail="Get Failed " + str( Getstatus ) + str( result ) )
 
-        if result != 'The temantNetwork does not exists':
+        if result != 'The tenantNetwork does not exists':
             main.log.error( "Delete Network failed" )
