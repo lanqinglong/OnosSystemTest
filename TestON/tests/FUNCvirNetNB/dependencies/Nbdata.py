@@ -67,8 +67,13 @@ class NetworkData:
             print "SourceData or DestData is not JSON Type!"
             return False
 
-        Socom = SourceCompareDataDic[FirstPara][SecondPara]
-        Decom = DestiCompareDataDic[FirstPara][SecondPara]
+        try:
+            Socom = SourceCompareDataDic[FirstPara][SecondPara]
+            Decom = DestiCompareDataDic[FirstPara][SecondPara]
+        except KeyError,error:
+            print error
+            return False            
+
         if Socom == Decom:
             return True
         else:
