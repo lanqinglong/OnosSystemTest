@@ -286,7 +286,7 @@ class FUNCvirNetNB:
         network.shared = 'false'
         postdata = network.DictoJson()
 
-        network.shared = 'True'
+        network.shared = 'true'
         postdatanew = network.DictoJson()
 
         main.step( "Post Data via HTTP" )

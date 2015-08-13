@@ -74,10 +74,10 @@ class NetworkData:
             print "Key error ,This key is not found:%s"%error
             return False            
 
-        if Socom == Decom:
+        if str(Socom).lower()== str(Decom).lower():
             return True
         else:
-            print "Source Compare data:"+FirstPara+"."+SecondPara+"="+Socom
+            print "Source Compare data:"+FirstPara+"."+SecondPara+"="+str(Socom)
             print "Dest Compare data: "+FirstPara+"."+SecondPara+"="+str(Decom)
             return False
 
