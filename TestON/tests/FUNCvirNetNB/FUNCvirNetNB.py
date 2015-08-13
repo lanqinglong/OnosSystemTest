@@ -655,10 +655,10 @@ class FUNCvirNetNB:
         Getstatus, result = main.ONOSrest.send( ctrlip, port , subnet.id , path + 'subnets/',
                                                  'GET', None , None )
         utilities.assert_equals(
-                expect='The subnet does not exists',
+                expect='the subnet does not exists',
                 actual=result,
                 onpass="Get Subnet Success",
                 onfail="Get Subnet Failed " + str( Getstatus ) + str( result ) )
 
-        if result != 'The subnet does not exists':
+        if result != 'the subnet does not exists':
             main.log.error( "Delete Subnet failed" )
