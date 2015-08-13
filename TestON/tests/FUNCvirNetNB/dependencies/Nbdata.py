@@ -139,12 +139,6 @@ class SubnetData(NetworkData):
 
         return json.dumps(Dicdata,indent=4)
 
-    def Ordered(self,obj):
-        super(NetworkData,self).Ordered(obj)
-
-    def JsonCompare(self,SourceData,DestiData,FirstPara,SecondPara):
-        super(NetworkData,self).JsonCompare(SourceData,DestiData,FirstPara,SecondPara)
-
 class VirtualPortData(NetworkData):
 
     def __init__(self):
@@ -213,9 +207,3 @@ class VirtualPortData(NetworkData):
             Dicdata = {'virtualport': Dicdata}
 
             return json.dumps(Dicdata,indent=4)
-
-    def Ordered(self,obj):
-        super(NetworkData,self).Ordered(obj)
-
-    def JsonCompare(self,SourceData,DestiData,FirstPara,SecondPara):
-        super(NetworkData,self).JsonCompare(SourceData,DestiData,FirstPara,SecondPara)
