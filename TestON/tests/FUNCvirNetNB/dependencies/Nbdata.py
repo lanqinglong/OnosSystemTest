@@ -71,7 +71,7 @@ class NetworkData:
             Socom = SourceCompareDataDic[FirstPara][SecondPara]
             Decom = DestiCompareDataDic[FirstPara][SecondPara]
         except KeyError,error:
-            print error
+            print error+"Key error ,This key is not found"
             return False            
 
         if Socom == Decom:

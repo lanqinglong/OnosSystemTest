@@ -570,7 +570,7 @@ class FUNCvirNetNB:
         Poolcmpresult = network.JsonCompare( newsubnetpostdata, result, 'subnet', 'allocation_pools' )
 
         Cmpresult = IDcmpresult and TanantIDcmpresult and Poolcmpresult
-        utilities.assert_equals(
+        utilities.assert_greater_equals(
                 expect=True,
                 actual=Cmpresult,
                 onpass="Compare Success",
