@@ -373,7 +373,6 @@ class FUNCvirNetNB:
         main.step( "Post Data via HTTP" )
         Poststatus, result = main.ONOSrest.send( ctrlip, port , '' , path + 'networks/',
                                                  'POST', None , postdata )
-
         utilities.assert_equals(
                 expect='200',
                 actual=Poststatus,
