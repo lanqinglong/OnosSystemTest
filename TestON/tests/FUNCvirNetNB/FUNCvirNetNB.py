@@ -569,15 +569,6 @@ class FUNCvirNetNB:
         TanantIDcmpresult = network.JsonCompare( newsubnetpostdata, result, 'subnet', 'tenant_id' )
         Poolcmpresult = network.JsonCompare( newsubnetpostdata, result, 'subnet', 'allocation_pools' )
 
-        Cmpresult = IDcmpresult and TanantIDcmpresult and Poolcmpresult
-        utilities.assert_greater_equals(
-                expect=True,
-                actual=Cmpresult,
-                onpass="Compare Success",
-                onfail="Compare Failed:ID compare:" + str( IDcmpresult ) + \
-                       ",Tenant id compare:"+ str( TanantIDcmpresult ) + \
-                       ",Pool compare:" + str( Poolcmpresult ) )
-
         deletestatus,result = main.ONOSrest.send( ctrlip, port, network.id, path+'networks/',
                                                  'DELETE', None, None )
         utilities.assert_equals(
@@ -585,6 +576,15 @@ class FUNCvirNetNB:
                 actual=deletestatus,
                 onpass="Delete Network Success",
                 onfail="Delete Network Failed" )
+        
+        Cmpresult = IDcmpresult and TanantIDcmpresult and Poolcmpresult
+        utilities.assert_equals(
+                expect=True,
+                actual=Cmpresult,
+                onpass="Compare Success",
+                onfail="Compare Failed:ID compare:" + str( IDcmpresult ) + \
+                       ",Tenant id compare:"+ str( TanantIDcmpresult ) + \
+                       ",Pool compare:" + str( Poolcmpresult ) )
 
         if Cmpresult != True:
             main.log.error( "Update Subnet compare failed" )
