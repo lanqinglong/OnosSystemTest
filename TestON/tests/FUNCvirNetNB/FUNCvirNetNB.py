@@ -700,7 +700,7 @@ class FUNCvirNetNB:
                                 "Verify Stored Data is same with Post Data"
 
         ctrlip = os.getenv( main.params['CTRL']['ip1'] )
-        port = main.params['HTTP']['port']
+        httpport = main.params['HTTP']['port']
         path = main.params['HTTP']['path']
 
         main.step( "Generate Post Data" )
@@ -722,7 +722,10 @@ class FUNCvirNetNB:
         portpostdata = port.DictoJson()
 
         main.step( "Post Network Data via HTTP(Post port need post network)" )
-        Poststatus, result = main.ONOSrest.send( ctrlip, port, '', path + 'networks/',
+        Poststatus, result = main.ONOSrest.send( ctrlip, httpport, '', path + 'networks/',
+                                                 'POST', None, networkpostdata )
+        main.step( "Post Network Data via HTTP(Post Subnet need post network)" )
+        Poststatus, result = main.ONOSrest.send( ctrlip, httpport, '', path + 'networks/',
                                                  'POST', None, networkpostdata )
         utilities.assert_equals(
                 expect='200',
@@ -731,7 +734,7 @@ class FUNCvirNetNB:
                 onfail="Post Network Failed " + str( Poststatus ) + "," + str( result ) )
 
         main.step( "Post Subnet Data via HTTP(Post port need post subnet)" )
-        Poststatus, result = main.ONOSrest.send( ctrlip, port, '', path + 'subnets/',
+        Poststatus, result = main.ONOSrest.send( ctrlip, httpport, '', path + 'subnets/',
                                                  'POST', None, subnetpostdata )
         utilities.assert_equals(
                 expect='202',
@@ -740,7 +743,7 @@ class FUNCvirNetNB:
                 onfail="Post Subnet Failed " + str( Poststatus ) + "," + str( result ) )
 
         main.step( "Post Port Data via HTTP" )
-        Poststatus, result = main.ONOSrest.send( ctrlip, port, '', path + 'ports/',
+        Poststatus, result = main.ONOSrest.send( ctrlip, httpport, '', path + 'ports/',
                                                  'POST', None, portpostdata )
         utilities.assert_equals(
                 expect='200',
@@ -749,7 +752,7 @@ class FUNCvirNetNB:
                 onfail="Post Port Failed " + str( Poststatus ) + "," + str( result ) )
 
         main.step( "Get Port Data via HTTP" )
-        Getstatus, result = main.ONOSrest.send( ctrlip, port, port.id, path + 'ports/',
+        Getstatus, result = main.ONOSrest.send( ctrlip, httpport, port.id, path + 'ports/',
                                                  'GET', None, None )
         utilities.assert_equals(
                 expect='200',
@@ -774,7 +777,7 @@ class FUNCvirNetNB:
                        ",FixIp compare:" + str( fixedIpresult ) )
 
         main.step( "Clean Data via HTTP" )
-        deletestatus,result = main.ONOSrest.send( ctrlip, port, network.id, path+'networks/',
+        deletestatus,result = main.ONOSrest.send( ctrlip, httpport, network.id, path+'networks/',
                                                  'DELETE', None, None )
         utilities.assert_equals(
                 expect='200',
@@ -808,7 +811,7 @@ class FUNCvirNetNB:
                                 "Verify Stored Data is same with New Post Data"
 
         ctrlip = os.getenv( main.params['CTRL']['ip1'] )
-        port = main.params['HTTP']['port']
+        httpport = main.params['HTTP']['port']
         path = main.params['HTTP']['path']
 
         main.step( "Generate Post Data" )
@@ -836,7 +839,7 @@ class FUNCvirNetNB:
         #end
 
         main.step( "Post Network Data via HTTP(Post port need post network)" )
-        Poststatus, result = main.ONOSrest.send( ctrlip, port, '', path + 'networks/',
+        Poststatus, result = main.ONOSrest.send( ctrlip, httpport, '', path + 'networks/',
                                                  'POST', None, networkpostdata )
         utilities.assert_equals(
                 expect='200',
@@ -845,7 +848,7 @@ class FUNCvirNetNB:
                 onfail="Post Network Failed " + str( Poststatus ) + "," + str( result ) )
 
         main.step( "Post Subnet Data via HTTP(Post port need post subnet)" )
-        Poststatus, result = main.ONOSrest.send( ctrlip, port, '', path + 'subnets/',
+        Poststatus, result = main.ONOSrest.send( ctrlip, httpport, '', path + 'subnets/',
                                                  'POST', None, subnetpostdata )
         utilities.assert_equals(
                 expect='202',
@@ -854,7 +857,7 @@ class FUNCvirNetNB:
                 onfail="Post Subnet Failed " + str( Poststatus ) + "," + str( result ) )
 
         main.step( "Post Port Data via HTTP" )
-        Poststatus, result = main.ONOSrest.send( ctrlip, port, '', path + 'ports/',
+        Poststatus, result = main.ONOSrest.send( ctrlip, httpport, '', path + 'ports/',
                                                  'POST', None, portpostdata )
         utilities.assert_equals(
                 expect='200',
@@ -863,7 +866,7 @@ class FUNCvirNetNB:
                 onfail="Post Port Failed " + str( Poststatus ) + "," + str( result ) )
 
         main.step( "Update Port Data via HTTP" )
-        Poststatus, result = main.ONOSrest.send( ctrlip, port, port.id, path + 'ports/',
+        Poststatus, result = main.ONOSrest.send( ctrlip, httpport, port.id, path + 'ports/',
                                                  'PUT', None, newportpostdata )
         utilities.assert_equals(
                 expect='200',
@@ -872,7 +875,7 @@ class FUNCvirNetNB:
                 onfail="Update Port Failed " + str( Poststatus ) + "," + str( result ) )
 
         main.step( "Get Port Data via HTTP" )
-        Getstatus, result = main.ONOSrest.send( ctrlip, port, port.id, path + 'ports/',
+        Getstatus, result = main.ONOSrest.send( ctrlip, httpport, port.id, path + 'ports/',
                                                  'GET', None, None )
         utilities.assert_equals(
                 expect='200',
@@ -897,7 +900,7 @@ class FUNCvirNetNB:
                        ",Name compare:" + str(Nameresult) )
 
         main.step( "Clean Data via HTTP" )
-        deletestatus,result = main.ONOSrest.send( ctrlip, port, network.id, path+'networks/',
+        deletestatus,result = main.ONOSrest.send( ctrlip, httpport, network.id, path+'networks/',
                                                  'DELETE', None, None )
         utilities.assert_equals(
                 expect='200',
@@ -931,7 +934,7 @@ class FUNCvirNetNB:
                                 "Verify port delete success"
 
         ctrlip = os.getenv( main.params['CTRL']['ip1'] )
-        port = main.params['HTTP']['port']
+        httpport = main.params['HTTP']['port']
         path = main.params['HTTP']['path']
 
         main.step( "Generate Post Data" )
@@ -953,7 +956,7 @@ class FUNCvirNetNB:
         portpostdata = port.DictoJson()
 
         main.step( "Post Network Data via HTTP(Post port need post network)" )
-        Poststatus, result = main.ONOSrest.send( ctrlip, port, '', path + 'networks/',
+        Poststatus, result = main.ONOSrest.send( ctrlip, httpport, '', path + 'networks/',
                                                  'POST', None, networkpostdata )
         utilities.assert_equals(
                 expect='200',
@@ -962,7 +965,7 @@ class FUNCvirNetNB:
                 onfail="Post Network Failed " + str( Poststatus ) + "," + str( result ) )
 
         main.step( "Post Subnet Data via HTTP(Post port need post subnet)" )
-        Poststatus, result = main.ONOSrest.send( ctrlip, port, '', path + 'subnets/',
+        Poststatus, result = main.ONOSrest.send( ctrlip, httpport, '', path + 'subnets/',
                                                  'POST', None, subnetpostdata )
         utilities.assert_equals(
                 expect='202',
@@ -971,7 +974,7 @@ class FUNCvirNetNB:
                 onfail="Post Subnet Failed " + str( Poststatus ) + "," + str( result ) )
 
         main.step( "Post Port Data via HTTP" )
-        Poststatus, result = main.ONOSrest.send( ctrlip, port, '', path + 'ports/',
+        Poststatus, result = main.ONOSrest.send( ctrlip, httpport, '', path + 'ports/',
                                                  'POST', None, portpostdata )
         utilities.assert_equals(
                 expect='200',
@@ -980,7 +983,7 @@ class FUNCvirNetNB:
                 onfail="Post Port Failed " + str( Poststatus ) + "," + str( result ) )
 
         main.step( "Delete Port Data via HTTP" )
-        Poststatus, result = main.ONOSrest.send( ctrlip, port, port.id, path + 'ports/',
+        Poststatus, result = main.ONOSrest.send( ctrlip, httpport, port.id, path + 'ports/',
                                                  'Delete', None, None )
         utilities.assert_equals(
                 expect='200',
@@ -989,7 +992,7 @@ class FUNCvirNetNB:
                 onfail="Delete Port Failed " + str( Poststatus ) + "," + str( result ) )
 
         main.step( "Get Port Data is NULL" )
-        Getstatus, result = main.ONOSrest.send( ctrlip, port, port.id, path + 'ports/',
+        Getstatus, result = main.ONOSrest.send( ctrlip, httpport, port.id, path + 'ports/',
                                                  'GET', None, None )
         utilities.assert_equals(
                 expect='the port does not exists',
@@ -1001,7 +1004,7 @@ class FUNCvirNetNB:
             main.log.error( "Delete Port failed" )
 
         main.step( "Clean Data via HTTP" )
-        deletestatus,result = main.ONOSrest.send( ctrlip, port, network.id, path+'networks/',
+        deletestatus,result = main.ONOSrest.send( ctrlip, httpport, network.id, path+'networks/',
                                                  'DELETE', None, None )
         utilities.assert_equals(
                 expect='200',
