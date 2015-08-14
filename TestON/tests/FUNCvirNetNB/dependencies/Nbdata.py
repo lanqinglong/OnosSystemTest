@@ -172,7 +172,7 @@ class VirtualPortData(NetworkData):
 
         Dicdata = {}
         fixedIp =[]
-        fixedIp.append({'subnet_id':self.subnetId,'ip_address':'192.168.1.4'})
+        fixedIp.append({'subnet_id':self.subnet_id,'ip_address':'192.168.1.4'})
         allocation_pools = []
 
         if self.id != '':
@@ -191,10 +191,10 @@ class VirtualPortData(NetworkData):
             Dicdata['security_groups'] = self.securityGroups
         if self.adminStateUp != '':
             Dicdata['admin_state_up'] = self.adminStateUp
-        if self.networkId != '':
-            Dicdata['network_id'] = self.networkId
-        if self.tenantId != '':
-            Dicdata['tenant_id'] = self.tenantId
+        if self.network_id != '':
+            Dicdata['network_id'] = self.network_id
+        if self.tenant_id != '':
+            Dicdata['tenant_id'] = self.tenant_id
         if self.bindingvifDetails != '':
             Dicdata['binding:vif_details'] = self.bindingvifDetails
         if self.bindingvnicType != '':
