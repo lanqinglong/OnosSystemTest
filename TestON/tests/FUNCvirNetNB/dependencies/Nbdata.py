@@ -150,14 +150,14 @@ class VirtualPortData(NetworkData):
         self.id = ''
         self.state = 'ACTIVE'
         self.bindingHostId = 'fa:16:3e:76:8e:88'
-        self.allowedAddressPairs = [{'macAddress':'fa:16:3e:76:8e:88','ipAddress':'192.168.1.1'}]
+        self.allowedAddressPairs = [{'mac_address':'fa:16:3e:76:8e:88','ip_address':'192.168.1.1'}]
         self.deviceOwner = 'none'
         self.fixedIp = []
         self.securityGroups = [{'securityGroup':'asd'}]
         self.adminStateUp = 'true'
-        self.networkId = ''
-        self.tenantId = ''
-        self.subnetId = ''
+        self.network_id = ''
+        self.tenant_id = ''
+        self.subnet_id = ''
         self.bindingvifDetails = 'port_filter'
         self.bindingvnicType = 'normal'
         self.bindingvifType = 'ovs'
@@ -171,44 +171,42 @@ class VirtualPortData(NetworkData):
 
         Dicdata = {}
         fixedIp =[]
-        fixedIp.append({'subnetId':self.subnetId,'ipAddress':'192.168.1.4'})
+        fixedIp.append({'subnet_id':self.subnetId,'ip_address':'192.168.1.4'})
         allocation_pools = []
 
         if self.id != '':
             Dicdata['id'] = self.id
         if self.state != '':
-            Dicdata['state'] = self.state
+            Dicdata['status'] = self.state
         if self.bindingHostId != '':
-            Dicdata['bindingHostId'] = self.bindingHostId
+            Dicdata['binding:host_id'] = self.bindingHostId
         if self.allowedAddressPairs != '':
-            Dicdata['allowedAddressPairs'] = self.allowedAddressPairs
+            Dicdata['allowed_address_pairs'] = self.allowedAddressPairs
         if self.deviceOwner != '':
-            Dicdata['deviceOwner'] = self.deviceOwner
+            Dicdata['device_owner'] = self.deviceOwner
         if self.fixedIp != []:
-            Dicdata['fixedIp'] = fixedIp
+            Dicdata['fixed_ips'] = fixedIp
         if self.securityGroups != '':
-            Dicdata['securityGroups'] = self.securityGroups
+            Dicdata['security_groups'] = self.securityGroups
         if self.adminStateUp != '':
-            Dicdata['adminStateUp'] = self.adminStateUp
+            Dicdata['admin_state_up'] = self.adminStateUp
         if self.networkId != '':
-            Dicdata['networkId'] = self.networkId
+            Dicdata['network_id'] = self.networkId
         if self.tenantId != '':
-            Dicdata['tenantId'] = self.tenantId
-        if self.subnetId != '':
-            Dicdata['subnetId'] = self.subnetId
+            Dicdata['tenant_id'] = self.tenantId
         if self.bindingvifDetails != '':
-            Dicdata['bindingvifDetails'] = self.bindingvifDetails
+            Dicdata['binding:vif_details'] = self.bindingvifDetails
         if self.bindingvnicType != '':
-            Dicdata['bindingvnicType'] = self.bindingvnicType
+            Dicdata['binding:vnic_type'] = self.bindingvnicType
         if self.bindingvifType != '':
-            Dicdata['bindingvifType'] = self.bindingvifType
+            Dicdata['binding:vif_type'] = self.bindingvifType
         if self.macAddress != '':
-            Dicdata['macAddress'] = self.macAddress
+            Dicdata['mac_address'] = self.macAddress
         if self.deviceId != '':
-            Dicdata['deviceId'] = self.deviceId
+            Dicdata['device_id'] = self.deviceId
         if self.name != '':
             Dicdata['name'] = self.name
 
-            Dicdata = {'virtualport': Dicdata}
+            Dicdata = {'port': Dicdata}
 
             return json.dumps(Dicdata,indent=4)

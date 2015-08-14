@@ -196,7 +196,9 @@ class FUNCvirNetNB:
             from tests.FUNCvirNetNB.dependencies.Nbdata import NetworkData
         except ImportError:
             main.log.exception( "Something wrong with import file or code error." )
-            main.log.info( "Import Error,please check!" )
+            main.log.info( "Import Error, please check!" )
+            main.cleanup()
+            main.exit()
 
         main.log.info( "ONOS Network Post test Start" )
         main.case( "Virtual Network NBI Test - Network" )
@@ -268,7 +270,9 @@ class FUNCvirNetNB:
             from tests.FUNCvirNetNB.dependencies.Nbdata import NetworkData
         except ImportError:
             main.log.exception( "Something wrong with import file or code error." )
-            main.log.info( "Import Error,please check!" )
+            main.log.info( "Import Error, please check!" )
+            main.cleanup()
+            main.exit()
 
         main.log.info( "ONOS Network Update test Start" )
         main.case( "Virtual Network NBI Test - Network" )
@@ -353,7 +357,9 @@ class FUNCvirNetNB:
             from tests.FUNCvirNetNB.dependencies.Nbdata import NetworkData
         except ImportError:
             main.log.exception( "Something wrong with import file or code error." )
-            main.log.info( "Import Error,please check!" )
+            main.log.info( "Import Error, please check!" )
+            main.cleanup()
+            main.exit()
 
         main.log.info( "ONOS Network Delete test Start" )
         main.case( "Virtual Network NBI Test - Network" )
@@ -371,8 +377,8 @@ class FUNCvirNetNB:
         postdata = network.DictoJson()
 
         main.step( "Post Data via HTTP" )
-        Poststatus, result = main.ONOSrest.send( ctrlip, port , '' , path + 'networks/',
-                                                 'POST', None , postdata )
+        Poststatus, result = main.ONOSrest.send( ctrlip, port, '', path + 'networks/',
+                                                 'POST', None, postdata )
         utilities.assert_equals(
                 expect='200',
                 actual=Poststatus,
@@ -412,7 +418,9 @@ class FUNCvirNetNB:
             from tests.FUNCvirNetNB.dependencies.Nbdata import SubnetData
         except ImportError:
             main.log.exception( "Something wrong with import file or code error." )
-            main.log.info( "Import Error,please check!" )
+            main.log.info( "Import Error, please check!" )
+            main.cleanup()
+            main.exit()
 
         main.log.info( "ONOS Subnet Post test Start" )
         main.case( "Virtual Network NBI Test - Subnet" )
@@ -436,8 +444,8 @@ class FUNCvirNetNB:
         subnetpostdata = subnet.DictoJson()
 
         main.step( "Post Network Data via HTTP(Post Subnet need post network)" )
-        Poststatus, result = main.ONOSrest.send( ctrlip, port , '' , path + 'networks/',
-                                                 'POST', None , networkpostdata )
+        Poststatus, result = main.ONOSrest.send( ctrlip, port, '', path + 'networks/',
+                                                 'POST', None, networkpostdata )
         utilities.assert_equals(
                 expect='200',
                 actual=Poststatus,
@@ -445,8 +453,8 @@ class FUNCvirNetNB:
                 onfail="Post Network Failed " + str( Poststatus ) + "," + str( result ) )
 
         main.step( "Post Subnet Data via HTTP" )
-        Poststatus, result = main.ONOSrest.send( ctrlip, port , '' , path + 'subnets/',
-                                                 'POST', None , subnetpostdata )
+        Poststatus, result = main.ONOSrest.send( ctrlip, port, '', path + 'subnets/',
+                                                 'POST', None, subnetpostdata )
         utilities.assert_equals(
                 expect='202',
                 actual=Poststatus,
@@ -454,8 +462,8 @@ class FUNCvirNetNB:
                 onfail="Post Subnet Failed " + str( Poststatus ) + "," + str( result ) )
 
         main.step( "Get Subnet Data via HTTP" )
-        Getstatus, result = main.ONOSrest.send( ctrlip, port , subnet.id , path + 'subnets/',
-                                                 'GET', None , None )
+        Getstatus, result = main.ONOSrest.send( ctrlip, port, subnet.id, path + 'subnets/',
+                                                 'GET', None, None )
         utilities.assert_equals(
                 expect='200',
                 actual=Getstatus,
@@ -463,8 +471,8 @@ class FUNCvirNetNB:
                 onfail="Get Subnet Failed " + str( Getstatus ) + "," + str( result ) )
 
         IDcmpresult = subnet.JsonCompare( subnetpostdata, result, 'subnet', 'id' )
-        TanantIDcmpresult = network.JsonCompare( subnetpostdata, result, 'subnet', 'tenant_id' )
-        NetoworkIDcmpresult = network.JsonCompare( subnetpostdata, result, 'subnet', 'network_id' )
+        TanantIDcmpresult = subnet.JsonCompare( subnetpostdata, result, 'subnet', 'tenant_id' )
+        NetoworkIDcmpresult = subnet.JsonCompare( subnetpostdata, result, 'subnet', 'network_id' )
 
         main.step( "Compare Post Subnet Data via HTTP" )
         Cmpresult = IDcmpresult and TanantIDcmpresult and NetoworkIDcmpresult
@@ -499,7 +507,9 @@ class FUNCvirNetNB:
             from tests.FUNCvirNetNB.dependencies.Nbdata import SubnetData
         except ImportError:
             main.log.exception( "Something wrong with import file or code error." )
-            main.log.info( "Import Error,please check!" )
+            main.log.info( "Import Error, please check!" )
+            main.cleanup()
+            main.exit()
 
         main.log.info( "ONOS Subnet Update test Start" )
         main.case( "Virtual Network NBI Test - Subnet" )
@@ -530,8 +540,8 @@ class FUNCvirNetNB:
         newsubnetpostdata = subnet.DictoJson()
 
         main.step( "Post Network Data via HTTP(Post Subnet need post network)" )
-        Poststatus, result = main.ONOSrest.send( ctrlip, port , '' , path + 'networks/',
-                                                 'POST', None , networkpostdata )
+        Poststatus, result = main.ONOSrest.send( ctrlip, port, '', path + 'networks/',
+                                                 'POST', None, networkpostdata )
         utilities.assert_equals(
                 expect='200',
                 actual=Poststatus,
@@ -539,8 +549,8 @@ class FUNCvirNetNB:
                 onfail="Post Network Failed " + str( Poststatus ) + "," + str( result ) )
 
         main.step( "Post Subnet Data via HTTP" )
-        Poststatus, result = main.ONOSrest.send( ctrlip, port , '' , path + 'subnets/',
-                                                 'POST', None , subnetpostdata )
+        Poststatus, result = main.ONOSrest.send( ctrlip, port, '', path + 'subnets/',
+                                                 'POST', None, subnetpostdata )
         utilities.assert_equals(
                 expect='202',
                 actual=Poststatus,
@@ -548,8 +558,8 @@ class FUNCvirNetNB:
                 onfail="Post Subnet Failed " + str( Poststatus ) + "," + str( result ) )
 
         main.step( "Update Subnet Data via HTTP" )
-        Putstatus, result = main.ONOSrest.send( ctrlip, port , subnet.id , path + 'subnets/',
-                                                 'PUT', None , newsubnetpostdata )
+        Putstatus, result = main.ONOSrest.send( ctrlip, port, subnet.id, path + 'subnets/',
+                                                 'PUT', None, newsubnetpostdata )
         utilities.assert_equals(
                 expect='203',
                 actual=Putstatus,
@@ -557,8 +567,8 @@ class FUNCvirNetNB:
                 onfail="Update Subnet Failed " + str( Putstatus ) + "," + str( result ) )
 
         main.step( "Get Subnet Data via HTTP" )
-        Getstatus, result = main.ONOSrest.send( ctrlip, port , subnet.id , path + 'subnets/',
-                                                 'GET', None , None )
+        Getstatus, result = main.ONOSrest.send( ctrlip, port, subnet.id, path + 'subnets/',
+                                                 'GET', None, None )
         utilities.assert_equals(
                 expect='200',
                 actual=Getstatus,
@@ -566,8 +576,8 @@ class FUNCvirNetNB:
                 onfail="Get Subnet Failed " + str( Getstatus ) + "," + str( result ) )
 
         IDcmpresult = subnet.JsonCompare( newsubnetpostdata, result, 'subnet', 'id' )
-        TanantIDcmpresult = network.JsonCompare( newsubnetpostdata, result, 'subnet', 'tenant_id' )
-        Poolcmpresult = network.JsonCompare( newsubnetpostdata, result, 'subnet', 'allocation_pools' )
+        TanantIDcmpresult = subnet.JsonCompare( newsubnetpostdata, result, 'subnet', 'tenant_id' )
+        Poolcmpresult = subnet.JsonCompare( newsubnetpostdata, result, 'subnet', 'allocation_pools' )
 
         main.step( "Compare Subnet Data" )
         Cmpresult = IDcmpresult and TanantIDcmpresult and Poolcmpresult
@@ -603,7 +613,9 @@ class FUNCvirNetNB:
             from tests.FUNCvirNetNB.dependencies.Nbdata import SubnetData
         except ImportError:
             main.log.exception( "Something wrong with import file or code error." )
-            main.log.info( "Import Error,please check!" )
+            main.log.info( "Import Error, please check!" )
+            main.cleanup()
+            main.exit()
 
         main.log.info( "ONOS Subnet Delete test Start" )
         main.case( "Virtual Network NBI Test - Subnet" )
@@ -627,8 +639,8 @@ class FUNCvirNetNB:
         subnetpostdata = subnet.DictoJson()
 
         main.step( "Post Network Data via HTTP(Post Subnet need post network)" )
-        Poststatus, result = main.ONOSrest.send( ctrlip, port , '' , path + 'networks/',
-                                                 'POST', None , networkpostdata )
+        Poststatus, result = main.ONOSrest.send( ctrlip, port, '', path + 'networks/',
+                                                 'POST', None, networkpostdata )
         utilities.assert_equals(
                 expect='200',
                 actual=Poststatus,
@@ -636,8 +648,8 @@ class FUNCvirNetNB:
                 onfail="Post Network Failed " + str( Poststatus ) + "," + str( result ) )
 
         main.step( "Post Subnet Data via HTTP" )
-        Poststatus, result = main.ONOSrest.send( ctrlip, port , '' , path + 'subnets/',
-                                                 'POST', None , subnetpostdata )
+        Poststatus, result = main.ONOSrest.send( ctrlip, port, '', path + 'subnets/',
+                                                 'POST', None, subnetpostdata )
         utilities.assert_equals(
                 expect='202',
                 actual=Poststatus,
@@ -645,8 +657,8 @@ class FUNCvirNetNB:
                 onfail="Post Subnet Failed " + str( Poststatus ) + "," + str( result ) )
 
         main.step( "Delete Subnet Data via HTTP" )
-        Deletestatus, result = main.ONOSrest.send( ctrlip, port , subnet.id , path + 'subnets/',
-                                                 'DELETE', None , None )
+        Deletestatus, result = main.ONOSrest.send( ctrlip, port, subnet.id, path + 'subnets/',
+                                                 'DELETE', None, None )
         utilities.assert_equals(
                 expect='201',
                 actual=Deletestatus,
@@ -654,8 +666,8 @@ class FUNCvirNetNB:
                 onfail="Delete Subnet Failed " + str( Deletestatus ) + "," + str( result ) )
 
         main.step( "Get Subnet Data is NULL" )
-        Getstatus, result = main.ONOSrest.send( ctrlip, port , subnet.id , path + 'subnets/',
-                                                 'GET', None , None )
+        Getstatus, result = main.ONOSrest.send( ctrlip, port, subnet.id, path + 'subnets/',
+                                                 'GET', None, None )
         utilities.assert_equals(
                 expect='the subnet does not exists',
                 actual=result,
@@ -664,3 +676,335 @@ class FUNCvirNetNB:
 
         if result != 'the subnet does not exists':
             main.log.error( "Delete Subnet failed" )
+
+    def CASE8( self, main ):
+
+        """
+        Test Post Port
+        """
+        import os,sys
+        sys.path.append("..")
+        try:
+            from tests.FUNCvirNetNB.dependencies.Nbdata import NetworkData
+            from tests.FUNCvirNetNB.dependencies.Nbdata import SubnetData
+            from tests.FUNCvirNetNB.dependencies.Nbdata import VirtualPortData
+        except ImportError:
+            main.log.exception( "Something wrong with import file or code error." )
+            main.log.info( "Import Error, please check!" )
+            main.cleanup()
+            main.exit()
+
+        main.log.info( "ONOS Port Post test Start" )
+        main.case( "Virtual Network NBI Test - Port" )
+        main.caseExplanation = "Test Port Post NBI " +\
+                                "Verify Stored Data is same with Post Data"
+
+        ctrlip = os.getenv( main.params['CTRL']['ip1'] )
+        port = main.params['HTTP']['port']
+        path = main.params['HTTP']['path']
+
+        main.step( "Generate Post Data" )
+        network = NetworkData()
+        network.id = '030d6d3d-fa36-45bf-ae2b-4f4bc43a54dc'
+        network.tenant_id = '26cd996094344a0598b0a1af1d525cdc'
+        subnet = SubnetData()
+        subnet.id = "e44bd655-e22c-4aeb-b1e9-ea1606875178"
+        subnet.tenant_id = network.tenant_id
+        subnet.network_id = network.id
+        port = VirtualPortData()
+        port.id = "9352e05c-58b8-4f2c-b4df-c20435ser56466"
+        port.subnet_id = subnet.id
+        port.tenant_id = network.tenant_id
+        port.network_id = network.id
+
+        networkpostdata = network.DictoJson()
+        subnetpostdata = subnet.DictoJson()
+        portpostdata = port.DictoJson()
+
+        main.step( "Post Network Data via HTTP(Post port need post network)" )
+        Poststatus, result = main.ONOSrest.send( ctrlip, port, '', path + 'networks/',
+                                                 'POST', None, networkpostdata )
+        utilities.assert_equals(
+                expect='200',
+                actual=Poststatus,
+                onpass="Post Network Success",
+                onfail="Post Network Failed " + str( Poststatus ) + "," + str( result ) )
+
+        main.step( "Post Subnet Data via HTTP(Post port need post subnet)" )
+        Poststatus, result = main.ONOSrest.send( ctrlip, port, '', path + 'subnets/',
+                                                 'POST', None, subnetpostdata )
+        utilities.assert_equals(
+                expect='202',
+                actual=Poststatus,
+                onpass="Post Subnet Success",
+                onfail="Post Subnet Failed " + str( Poststatus ) + "," + str( result ) )
+
+        main.step( "Post Port Data via HTTP" )
+        Poststatus, result = main.ONOSrest.send( ctrlip, port, '', path + 'ports/',
+                                                 'POST', None, portpostdata )
+        utilities.assert_equals(
+                expect='200',
+                actual=Poststatus,
+                onpass="Post Port Success",
+                onfail="Post Port Failed " + str( Poststatus ) + "," + str( result ) )
+
+        main.step( "Get Port Data via HTTP" )
+        Getstatus, result = main.ONOSrest.send( ctrlip, port, port.id, path + 'ports/',
+                                                 'GET', None, None )
+        utilities.assert_equals(
+                expect='200',
+                actual=Getstatus,
+                onpass="Get Port Success",
+                onfail="Get Port Failed " + str( Getstatus ) + "," + str( result ) )
+
+        main.step( "Compare Post Port Data" )
+        IDcmpresult = subnet.JsonCompare( portpostdata, result, 'port', 'id' )
+        TanantIDcmpresult = subnet.JsonCompare( portpostdata, result, 'port', 'tenant_id' )
+        NetoworkIDcmpresult = subnet.JsonCompare( portpostdata, result, 'port', 'network_id' )
+        fixedIpresult = subnet.JsonCompare( portpostdata, result, 'port', 'fixed_ips' )
+
+        Cmpresult = IDcmpresult and TanantIDcmpresult and NetoworkIDcmpresult and fixedIpresult
+        utilities.assert_equals(
+                expect=True,
+                actual=Cmpresult,
+                onpass="Compare Success",
+                onfail="Compare Failed:ID compare:" + str( IDcmpresult ) + \
+                       ",Tenant id compare:"+ str( TanantIDcmpresult ) + \
+                       ",Network id compare:" + str( NetoworkIDcmpresult ) +\
+                       ",FixIp compare:" + str( fixedIpresult ) )
+
+        main.step( "Clean Data via HTTP" )
+        deletestatus,result = main.ONOSrest.send( ctrlip, port, network.id, path+'networks/',
+                                                 'DELETE', None, None )
+        utilities.assert_equals(
+                expect='200',
+                actual=deletestatus,
+                onpass="Delete Network Success",
+                onfail="Delete Network Failed" )
+
+        if Cmpresult != True:
+            main.log.error( "Post port compare failed" )
+
+    def CASE9( self, main ):
+
+        """
+        Test Update Port
+        """
+        import os,sys
+        sys.path.append("..")
+        try:
+            from tests.FUNCvirNetNB.dependencies.Nbdata import NetworkData
+            from tests.FUNCvirNetNB.dependencies.Nbdata import SubnetData
+            from tests.FUNCvirNetNB.dependencies.Nbdata import VirtualPortData
+        except ImportError:
+            main.log.exception( "Something wrong with import file or code error." )
+            main.log.info( "Import Error, please check!" )
+            main.cleanup()
+            main.exit()
+
+        main.log.info( "ONOS Port Update test Start" )
+        main.case( "Virtual Network NBI Test - Port" )
+        main.caseExplanation = "Test Port Update NBI " +\
+                                "Verify Stored Data is same with New Post Data"
+
+        ctrlip = os.getenv( main.params['CTRL']['ip1'] )
+        port = main.params['HTTP']['port']
+        path = main.params['HTTP']['path']
+
+        main.step( "Generate Post Data" )
+        network = NetworkData()
+        network.id = '030d6d3d-fa36-45bf-ae2b-4f4bc43a54dc'
+        network.tenant_id = '26cd996094344a0598b0a1af1d525cdc'
+        subnet = SubnetData()
+        subnet.id = "e44bd655-e22c-4aeb-b1e9-ea1606875178"
+        subnet.tenant_id = network.tenant_id
+        subnet.network_id = network.id
+        port = VirtualPortData()
+        port.id = "9352e05c-58b8-4f2c-b4df-c20435ser56466"
+        port.subnet_id = subnet.id
+        port.tenant_id = network.tenant_id
+        port.network_id = network.id
+        port.name = "onos"
+
+        networkpostdata = network.DictoJson()
+        subnetpostdata = subnet.DictoJson()
+        portpostdata = port.DictoJson()
+
+        #create update data
+        port.name = "onos-new"
+        newportpostdata = port.DictoJson()
+        #end
+
+        main.step( "Post Network Data via HTTP(Post port need post network)" )
+        Poststatus, result = main.ONOSrest.send( ctrlip, port, '', path + 'networks/',
+                                                 'POST', None, networkpostdata )
+        utilities.assert_equals(
+                expect='200',
+                actual=Poststatus,
+                onpass="Post Network Success",
+                onfail="Post Network Failed " + str( Poststatus ) + "," + str( result ) )
+
+        main.step( "Post Subnet Data via HTTP(Post port need post subnet)" )
+        Poststatus, result = main.ONOSrest.send( ctrlip, port, '', path + 'subnets/',
+                                                 'POST', None, subnetpostdata )
+        utilities.assert_equals(
+                expect='202',
+                actual=Poststatus,
+                onpass="Post Subnet Success",
+                onfail="Post Subnet Failed " + str( Poststatus ) + "," + str( result ) )
+
+        main.step( "Post Port Data via HTTP" )
+        Poststatus, result = main.ONOSrest.send( ctrlip, port, '', path + 'ports/',
+                                                 'POST', None, portpostdata )
+        utilities.assert_equals(
+                expect='200',
+                actual=Poststatus,
+                onpass="Post Port Success",
+                onfail="Post Port Failed " + str( Poststatus ) + "," + str( result ) )
+
+        main.step( "Update Port Data via HTTP" )
+        Poststatus, result = main.ONOSrest.send( ctrlip, port, port.id, path + 'ports/',
+                                                 'PUT', None, newportpostdata )
+        utilities.assert_equals(
+                expect='200',
+                actual=Poststatus,
+                onpass="Update Port Success",
+                onfail="Update Port Failed " + str( Poststatus ) + "," + str( result ) )
+
+        main.step( "Get Port Data via HTTP" )
+        Getstatus, result = main.ONOSrest.send( ctrlip, port, port.id, path + 'ports/',
+                                                 'GET', None, None )
+        utilities.assert_equals(
+                expect='200',
+                actual=Getstatus,
+                onpass="Get Port Success",
+                onfail="Get Port Failed " + str( Getstatus ) + "," + str( result ) )
+
+        main.step( "Compare Update Port Data" )
+        IDcmpresult = subnet.JsonCompare( portpostdata, result, 'port', 'id' )
+        TanantIDcmpresult = subnet.JsonCompare( portpostdata, result, 'port', 'tenant_id' )
+        NetoworkIDcmpresult = subnet.JsonCompare( portpostdata, result, 'port', 'network_id' )
+        Nameresult = subnet.JsonCompare( newportpostdata, result, 'port', 'name' )
+
+        Cmpresult = IDcmpresult and TanantIDcmpresult and NetoworkIDcmpresult and Nameresult
+        utilities.assert_equals(
+                expect=True,
+                actual=Cmpresult,
+                onpass="Compare Success",
+                onfail="Compare Failed:ID compare:" + str( IDcmpresult ) + \
+                       ",Tenant id compare:"+ str( TanantIDcmpresult ) + \
+                       ",Network id compare:" + str( NetoworkIDcmpresult ) + \
+                       ",Name compare:" + str(Nameresult) )
+
+        main.step( "Clean Data via HTTP" )
+        deletestatus,result = main.ONOSrest.send( ctrlip, port, network.id, path+'networks/',
+                                                 'DELETE', None, None )
+        utilities.assert_equals(
+                expect='200',
+                actual=deletestatus,
+                onpass="Delete Network Success",
+                onfail="Delete Network Failed" )
+
+        if Cmpresult != True:
+            main.log.error( "Update port compare failed" )
+
+    def CASE10( self, main ):
+
+        """
+        Test Delete Port
+        """
+        import os,sys
+        sys.path.append("..")
+        try:
+            from tests.FUNCvirNetNB.dependencies.Nbdata import NetworkData
+            from tests.FUNCvirNetNB.dependencies.Nbdata import SubnetData
+            from tests.FUNCvirNetNB.dependencies.Nbdata import VirtualPortData
+        except ImportError:
+            main.log.exception( "Something wrong with import file or code error." )
+            main.log.info( "Import Error, please check!" )
+            main.cleanup()
+            main.exit()
+
+        main.log.info( "ONOS Port Delete test Start" )
+        main.case( "Virtual Network NBI Test - Port" )
+        main.caseExplanation = "Test Port Delete NBI " +\
+                                "Verify port delete success"
+
+        ctrlip = os.getenv( main.params['CTRL']['ip1'] )
+        port = main.params['HTTP']['port']
+        path = main.params['HTTP']['path']
+
+        main.step( "Generate Post Data" )
+        network = NetworkData()
+        network.id = '030d6d3d-fa36-45bf-ae2b-4f4bc43a54dc'
+        network.tenant_id = '26cd996094344a0598b0a1af1d525cdc'
+        subnet = SubnetData()
+        subnet.id = "e44bd655-e22c-4aeb-b1e9-ea1606875178"
+        subnet.tenant_id = network.tenant_id
+        subnet.network_id = network.id
+        port = VirtualPortData()
+        port.id = "9352e05c-58b8-4f2c-b4df-c20435ser56466"
+        port.subnet_id = subnet.id
+        port.tenant_id = network.tenant_id
+        port.network_id = network.id
+
+        networkpostdata = network.DictoJson()
+        subnetpostdata = subnet.DictoJson()
+        portpostdata = port.DictoJson()
+
+        main.step( "Post Network Data via HTTP(Post port need post network)" )
+        Poststatus, result = main.ONOSrest.send( ctrlip, port, '', path + 'networks/',
+                                                 'POST', None, networkpostdata )
+        utilities.assert_equals(
+                expect='200',
+                actual=Poststatus,
+                onpass="Post Network Success",
+                onfail="Post Network Failed " + str( Poststatus ) + "," + str( result ) )
+
+        main.step( "Post Subnet Data via HTTP(Post port need post subnet)" )
+        Poststatus, result = main.ONOSrest.send( ctrlip, port, '', path + 'subnets/',
+                                                 'POST', None, subnetpostdata )
+        utilities.assert_equals(
+                expect='202',
+                actual=Poststatus,
+                onpass="Post Subnet Success",
+                onfail="Post Subnet Failed " + str( Poststatus ) + "," + str( result ) )
+
+        main.step( "Post Port Data via HTTP" )
+        Poststatus, result = main.ONOSrest.send( ctrlip, port, '', path + 'ports/',
+                                                 'POST', None, portpostdata )
+        utilities.assert_equals(
+                expect='200',
+                actual=Poststatus,
+                onpass="Post Port Success",
+                onfail="Post Port Failed " + str( Poststatus ) + "," + str( result ) )
+
+        main.step( "Delete Port Data via HTTP" )
+        Poststatus, result = main.ONOSrest.send( ctrlip, port, port.id, path + 'ports/',
+                                                 'Delete', None, None )
+        utilities.assert_equals(
+                expect='200',
+                actual=Poststatus,
+                onpass="Delete Port Success",
+                onfail="Delete Port Failed " + str( Poststatus ) + "," + str( result ) )
+
+        main.step( "Get Port Data is NULL" )
+        Getstatus, result = main.ONOSrest.send( ctrlip, port, port.id, path + 'ports/',
+                                                 'GET', None, None )
+        utilities.assert_equals(
+                expect='the port does not exists',
+                actual=result,
+                onpass="Get Port Success",
+                onfail="Get Port Failed " + str( Getstatus ) + "," + str( result ) )
+
+        if result != 'the port does not exists':
+            main.log.error( "Delete Port failed" )
+
+        main.step( "Clean Data via HTTP" )
+        deletestatus,result = main.ONOSrest.send( ctrlip, port, network.id, path+'networks/',
+                                                 'DELETE', None, None )
+        utilities.assert_equals(
+                expect='200',
+                actual=deletestatus,
+                onpass="Delete Network Success",
+                onfail="Delete Network Failed" )
