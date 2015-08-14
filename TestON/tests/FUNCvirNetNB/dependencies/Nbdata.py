@@ -184,9 +184,7 @@ class VirtualPortData(NetworkData):
         if self.allowedAddressPairs != '':
             Dicdata['allowed_address_pairs'] = self.allowedAddressPairs
         if self.deviceOwner != '':
-            Dicdata['device_owner'] = self.deviceOwner
-        if self.fixedIp != []:
-            Dicdata['fixed_ips'] = fixedIp
+            Dicdata['device_owner'] = self.deviceOwner            
         if self.securityGroups != '':
             Dicdata['security_groups'] = self.securityGroups
         if self.adminStateUp != '':
@@ -208,6 +206,7 @@ class VirtualPortData(NetworkData):
         if self.name != '':
             Dicdata['name'] = self.name
 
-            Dicdata = {'port': Dicdata}
+        Dicdata['fixed_ips'] = fixedIp
+        Dicdata = {'port': Dicdata}
 
-            return json.dumps(Dicdata,indent=4)
+        return json.dumps(Dicdata,indent=4)

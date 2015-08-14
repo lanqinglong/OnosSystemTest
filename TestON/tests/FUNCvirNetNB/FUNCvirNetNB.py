@@ -724,9 +724,6 @@ class FUNCvirNetNB:
         main.step( "Post Network Data via HTTP(Post port need post network)" )
         Poststatus, result = main.ONOSrest.send( ctrlip, httpport, '', path + 'networks/',
                                                  'POST', None, networkpostdata )
-        main.step( "Post Network Data via HTTP(Post Subnet need post network)" )
-        Poststatus, result = main.ONOSrest.send( ctrlip, httpport, '', path + 'networks/',
-                                                 'POST', None, networkpostdata )
         utilities.assert_equals(
                 expect='200',
                 actual=Poststatus,
