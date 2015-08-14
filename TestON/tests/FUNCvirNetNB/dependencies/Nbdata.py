@@ -166,7 +166,8 @@ class VirtualPortData(NetworkData):
         self.name = 'u'
 
     def DictoJson(self):
-        if self.id == '' or self.tenant_id == ' ' or self.networkId == '':
+        if self.id == '' or self.tenant_id == ' ' or \
+           self.network_id == '' or self.subnet_id == '':
             print 'Id/tenant id/networkid/subnetId is necessary!'
 
         Dicdata = {}
