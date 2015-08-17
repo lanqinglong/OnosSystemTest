@@ -190,8 +190,8 @@ class FUNCvirNetNB:
         """
         Test Post Network
         """
-        import os,sys
-        sys.path.append("..")
+        import os
+
         try:
             from tests.FUNCvirNetNB.dependencies.Nbdata import NetworkData
         except ImportError:
@@ -264,8 +264,8 @@ class FUNCvirNetNB:
         """
         Test Update Network
         """
-        import os,sys
-        sys.path.append("..")
+        import os
+
         try:
             from tests.FUNCvirNetNB.dependencies.Nbdata import NetworkData
         except ImportError:
@@ -351,8 +351,8 @@ class FUNCvirNetNB:
         """
         Test Delete Network
         """
-        import os,sys
-        sys.path.append("..")
+        import os
+
         try:
             from tests.FUNCvirNetNB.dependencies.Nbdata import NetworkData
         except ImportError:
@@ -411,8 +411,8 @@ class FUNCvirNetNB:
         """
         Test Post Subnet
         """
-        import os,sys
-        sys.path.append("..")
+        import os
+
         try:
             from tests.FUNCvirNetNB.dependencies.Nbdata import NetworkData
             from tests.FUNCvirNetNB.dependencies.Nbdata import SubnetData
@@ -500,8 +500,8 @@ class FUNCvirNetNB:
         """
         Test Post Subnet
         """
-        import os,sys
-        sys.path.append("..")
+        import os
+
         try:
             from tests.FUNCvirNetNB.dependencies.Nbdata import NetworkData
             from tests.FUNCvirNetNB.dependencies.Nbdata import SubnetData
@@ -606,8 +606,8 @@ class FUNCvirNetNB:
         """
         Test Delete Subnet
         """
-        import os,sys
-        sys.path.append("..")
+        import os
+
         try:
             from tests.FUNCvirNetNB.dependencies.Nbdata import NetworkData
             from tests.FUNCvirNetNB.dependencies.Nbdata import SubnetData
@@ -682,8 +682,8 @@ class FUNCvirNetNB:
         """
         Test Post Port
         """
-        import os,sys
-        sys.path.append("..")
+        import os
+
         try:
             from tests.FUNCvirNetNB.dependencies.Nbdata import NetworkData
             from tests.FUNCvirNetNB.dependencies.Nbdata import SubnetData
@@ -790,8 +790,8 @@ class FUNCvirNetNB:
         """
         Test Update Port
         """
-        import os,sys
-        sys.path.append("..")
+        import os
+
         try:
             from tests.FUNCvirNetNB.dependencies.Nbdata import NetworkData
             from tests.FUNCvirNetNB.dependencies.Nbdata import SubnetData
@@ -913,8 +913,8 @@ class FUNCvirNetNB:
         """
         Test Delete Port
         """
-        import os,sys
-        sys.path.append("..")
+        import os
+
         try:
             from tests.FUNCvirNetNB.dependencies.Nbdata import NetworkData
             from tests.FUNCvirNetNB.dependencies.Nbdata import SubnetData
