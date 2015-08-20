@@ -69,7 +69,7 @@ class FUNCvirNetNB:
 
         #FIXME:this is short term fix
         main.log.info( "Removing raft logs" )
-        main.ONOSbench.onosRemoveRaftlogs()
+        main.ONOSbench.onosRemoveRaftLogs()
 
         main.CLIs = []
         main.nodes = []
