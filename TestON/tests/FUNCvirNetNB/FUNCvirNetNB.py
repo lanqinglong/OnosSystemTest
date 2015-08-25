@@ -669,12 +669,12 @@ class FUNCvirNetNB:
         Getstatus, result = main.ONOSrest.send( ctrlip, port, subnet.id, path + 'subnets/',
                                                  'GET', None, None )
         utilities.assert_equals(
-                expect='the subnet does not exists',
+                expect='The subnet does not exists',
                 actual=result,
                 onpass="Get Subnet Success",
                 onfail="Get Subnet Failed " + str( Getstatus ) + str( result ) )
 
-        if result != 'the subnet does not exists':
+        if result != 'The subnet does not exists':
             main.log.error( "Delete Subnet failed" )
 
     def CASE8( self, main ):
@@ -774,7 +774,7 @@ class FUNCvirNetNB:
                        ",FixIp compare:" + str( fixedIpresult ) )
 
         main.step( "Clean Data via HTTP" )
-        deletestatus,result = main.ONOSrest.send( ctrlip, httpport, network.id, path+'networks/',
+        deletestatus,result = main.ONOSrest.send( ctrlip, httpport, network.id, path + 'networks/',
                                                  'DELETE', None, None )
         utilities.assert_equals(
                 expect='200',
@@ -897,7 +897,7 @@ class FUNCvirNetNB:
                        ",Name compare:" + str(Nameresult) )
 
         main.step( "Clean Data via HTTP" )
-        deletestatus,result = main.ONOSrest.send( ctrlip, httpport, network.id, path+'networks/',
+        deletestatus,result = main.ONOSrest.send( ctrlip, httpport, network.id, path + 'networks/',
                                                  'DELETE', None, None )
         utilities.assert_equals(
                 expect='200',
@@ -1001,7 +1001,7 @@ class FUNCvirNetNB:
             main.log.error( "Delete Port failed" )
 
         main.step( "Clean Data via HTTP" )
-        deletestatus,result = main.ONOSrest.send( ctrlip, httpport, network.id, path+'networks/',
+        deletestatus,result = main.ONOSrest.send( ctrlip, httpport, network.id, path + 'networks/',
                                                  'DELETE', None, None )
         utilities.assert_equals(
                 expect='200',

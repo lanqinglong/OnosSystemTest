@@ -72,7 +72,7 @@ class NetworkData:
             Decom = DestiCompareDataDic[FirstPara][SecondPara]
         except KeyError,error:
             print "Key error ,This key is not found:%s"%error
-            return False            
+            return False
 
         if str(Socom).lower()== str(Decom).lower():
             return True
