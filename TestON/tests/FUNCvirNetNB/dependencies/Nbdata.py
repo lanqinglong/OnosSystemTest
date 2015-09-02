@@ -11,12 +11,12 @@ class NetworkData:
         self.state = 'ACTIVE'
         self.name = 'onosfw-1'
         self.physicalNetwork = 'none'
-        self.admin_state_up = 'true'
+        self.admin_state_up = True
         self.tenant_id = ''
-        self.routerExternal = 'false'
+        self.routerExternal = False
         self.type ='LOCAL'
         self.segmentationID = '6'
-        self.shared = 'false'
+        self.shared = False
 
     def DictoJson(self):
 
@@ -94,11 +94,11 @@ class SubnetData(NetworkData):
         self.ipv6_address_mode = 'DHCPV6_STATELESS'
         self.ipv6_ra_mode = 'DHCPV6_STATELESS'
         self.cidr = '192.168.1.1/24'
-        self.enable_dhcp = 'true'
+        self.enable_dhcp = True
         self.dns_nameservers = 'aaa'
         self.gateway_ip = '192.168.2.1'
         self.ip_version = 'INET'
-        self.shared = 'false'
+        self.shared = False
         self.name = 'demo-subnet'
 
     def DictoJson(self):
@@ -154,7 +154,7 @@ class VirtualPortData(NetworkData):
         self.deviceOwner = 'none'
         self.fixedIp = []
         self.securityGroups = [{'securityGroup':'asd'}]
-        self.adminStateUp = 'true'
+        self.adminStateUp = True
         self.network_id = ''
         self.tenant_id = ''
         self.subnet_id = ''
