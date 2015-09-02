@@ -287,10 +287,10 @@ class FUNCvirNetNB:
         network = NetworkData()
         network.id = '030d6d3d-fa36-45bf-ae2b-4f4bc43a54dc'
         network.tenant_id = '26cd996094344a0598b0a1af1d525cdc'
-        network.shared = 'false'
+        network.shared = False
         postdata = network.DictoJson()
 
-        network.shared = 'true'
+        network.shared = True
         postdatanew = network.DictoJson()
 
         main.step( "Post Data via HTTP" )
@@ -392,7 +392,7 @@ class FUNCvirNetNB:
                 expect='200',
                 actual=Deletestatus,
                 onpass="Delete Success",
-                onfail="Delete Failed " + str( Getstatus ) + str( result ) )
+                onfail="Delete Failed " + str( Deletestatus ) + str( result ) )
 
         main.step( "Get Data is NULL" )
         Getstatus, result = main.ONOSrest.send( ctrlip, port, network.id, path+'networks/',

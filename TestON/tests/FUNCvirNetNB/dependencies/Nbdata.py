@@ -97,7 +97,7 @@ class SubnetData(NetworkData):
         self.enable_dhcp = True
         self.dns_nameservers = 'aaa'
         self.gateway_ip = '192.168.2.1'
-        self.ip_version = 'INET'
+        self.ip_version = '4'
         self.shared = False
         self.name = 'demo-subnet'
 
