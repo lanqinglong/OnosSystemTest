@@ -992,12 +992,12 @@ class FUNCvirNetNB:
         Getstatus, result = main.ONOSrest.send( ctrlip, httpport, port.id, path + 'ports/',
                                                  'GET', None, None )
         utilities.assert_equals(
-                expect='the port does not exists',
+                expect='The virtualPort does not exists',
                 actual=result,
                 onpass="Get Port Success",
                 onfail="Get Port Failed " + str( Getstatus ) + "," + str( result ) )
 
-        if result != 'the port does not exists':
+        if result != 'The virtualPort does not exists':
             main.log.error( "Delete Port failed" )
 
         main.step( "Clean Data via HTTP" )
