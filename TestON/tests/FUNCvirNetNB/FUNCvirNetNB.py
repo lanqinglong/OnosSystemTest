@@ -65,7 +65,7 @@ class FUNCvirNetNB:
 
         cellResult = main.ONOSbench.setCell(cellName)
         verifyResult = main.ONOSbench.verifyCell()
-        
+
         stepResult = cellResult and verifyResult
         utilities.assert_equals( expect=main.TRUE,
                                  actual=stepResult,
